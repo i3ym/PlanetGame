@@ -26,9 +26,9 @@ namespace Planet
             Parent.Rotate((1f + Input.GetAxis("Vertical") / 2f) * Speed, Input.GetAxis("Horizontal") * 4f, 0f);
         }
 
-        void OnCollisionEnter(Collision other)
+        void OnTriggerEnter(Collider other)
         {
-            var meteor = other.gameObject.GetComponent<Meteor>();
+            var meteor = other.GetComponent<Meteor>();
             if (meteor == null) return;
 
             meteor.Effect.OnCollideWithPlayer(this);
