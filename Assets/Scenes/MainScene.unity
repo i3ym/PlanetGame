@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1330065414}
+  Speed: 1
 --- !u!120 &63347334
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1294,7 +1295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4e44a1b1ebcc4f0b437b44154e88c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GameManager: {fileID: 1330065414}
+  GameManager: {fileID: 1330065414}
   _MainMenu: {fileID: 24983676}
   _GameOverMenu: {fileID: 254137033}
 --- !u!1 &963194225
