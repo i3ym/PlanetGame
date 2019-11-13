@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace Planet
 {
-    public class BiasedRandom
+    public class BiasedRandom<T>
     {
         readonly Random Random = new Random();
-        readonly List<int> Bias = new List<int>();
+        readonly List<T> Bias = new List<T>();
 
-        public int Next() => Bias[Random.Next(Bias.Count)];
-        public void AddNumber(int number, int count) => Bias.AddRange(Enumerable.Repeat(number, count));
+        public T Next() => Bias[Random.Next(Bias.Count)];
+        public void Add(T number, int count) => Bias.AddRange(Enumerable.Repeat(number, count));
     }
 }
