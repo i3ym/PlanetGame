@@ -8,6 +8,8 @@ namespace Planet
 
         public MeteorEffect Effect { get; protected set; }
 
+        Renderer Renderer;
+
         static Meteor()
         {
             BiasedRandom = new BiasedRandom<MeteorEffect>();
@@ -16,7 +18,11 @@ namespace Planet
         }
         void Start()
         {
+            Renderer = GetComponent<Renderer>();
             Effect = BiasedRandom.Next();
+
+            Renderer.material.color = Effect.Color;
+            Renderer.material.SetColor("_EmissionColor", Effect.Color);
         }
     }
 }
