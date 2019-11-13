@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Planet
 {
-    public class MeteorSpawner : MonoBehaviour, IStartGameCallback, IGameOverCallback
+    public class MeteorSpawner : MonoBehaviour, IStartGameCallback, IGameOverCallback, IHasGameManager
     {
         [SerializeField] GameManager GameManager = null;
         [SerializeField] float SpawnDistance = 2f;
@@ -16,6 +16,8 @@ namespace Planet
         List<Meteor> Meteors = new List<Meteor>();
         List<Meteor> PlacedMeteors = new List<Meteor>();
         Coroutine SpawnMeteorCoroutineVar;
+
+        GameManager IHasGameManager.GameManager => GameManager;
 
         void Start()
         {

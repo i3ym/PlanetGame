@@ -16,7 +16,7 @@ namespace Planet.Menu
 
         void RestartGame()
         {
-            MenuManager.GameManager.StartGame();
+            (MenuManager as IHasGameManager).GameManager.StartGame();
         }
         void ExitGame() => MenuManager.SetMenu(MenuManager.MainMenu);
     }

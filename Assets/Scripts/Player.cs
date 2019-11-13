@@ -3,10 +3,12 @@
 namespace Planet
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Player : MonoBehaviour, IStartGameCallback, IGameOverCallback
+    public class Player : MonoBehaviour, IStartGameCallback, IGameOverCallback, IHasGameManager
     {
         [SerializeField] GameManager GameManager = null;
         Transform Parent;
+
+        GameManager IHasGameManager.GameManager => GameManager;
 
         void Start()
         {
@@ -22,7 +24,13 @@ namespace Planet
             Parent.Rotate(1f + Input.GetAxis("Vertical") / 2f, Input.GetAxis("Horizontal") * 4f, 0f);
         }
 
-        void OnCollisionEnter(Collision other) => GameManager.GameOver();
+        void OnCollisionEnter(Collision other)
+        {
+            var meteor = other.gameObject.GetComponent<Meteor>();
+            if (meteor == null) return;
+
+            meteor.Effect.OnCollideWithPlayer(this);
+        }
 
         public void OnStartGame()
         {

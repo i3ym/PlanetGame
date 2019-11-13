@@ -2,13 +2,14 @@ using UnityEngine;
 
 namespace Planet.Menu
 {
-    public class MenuManager : MonoBehaviour, IStartGameCallback, IGameOverCallback
+    public class MenuManager : MonoBehaviour, IStartGameCallback, IGameOverCallback, IHasGameManager
     {
-        public GameManager GameManager => _GameManager;
         public Menu MainMenu => _MainMenu;
         public Menu GameOverMenu => _GameOverMenu;
 
-        [SerializeField] GameManager _GameManager = null;
+        GameManager IHasGameManager.GameManager => GameManager;
+
+        [SerializeField] GameManager GameManager = null;
         [SerializeField] MainMenu _MainMenu = null;
         [SerializeField] GameOverMenu _GameOverMenu = null;
 
