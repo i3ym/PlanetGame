@@ -11,8 +11,18 @@ namespace Planet
 
         #region static effects
 
-        public static MeteorEffect None = new MeteorEffect(Color.red,
+        public static MeteorEffect None = new MeteorEffect(Color.white,
             (player) => (player as IHasGameManager).GameManager.GameOver());
+
+        public static MeteorEffect Slowdown = new MeteorEffect(Color.red, 5f,
+            (player) =>
+            {
+                player.Speed -= .5f;
+            },
+            (player) =>
+            {
+                player.Speed += .5f;
+            });
 
         #endregion
 

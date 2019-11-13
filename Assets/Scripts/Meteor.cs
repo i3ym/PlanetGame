@@ -15,6 +15,7 @@ namespace Planet
             BiasedRandom = new BiasedRandom<MeteorEffect>();
 
             BiasedRandom.Add(MeteorEffect.None, 100);
+            BiasedRandom.Add(MeteorEffect.Slowdown, 5);
         }
         void Start()
         {

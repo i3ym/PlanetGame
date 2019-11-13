@@ -6,6 +6,8 @@ namespace Planet
     public class Player : MonoBehaviour, IStartGameCallback, IGameOverCallback, IHasGameManager
     {
         [SerializeField] GameManager GameManager = null;
+        [SerializeField] public float Speed = 1f;
+
         Transform Parent;
 
         GameManager IHasGameManager.GameManager => GameManager;
@@ -21,7 +23,7 @@ namespace Planet
         {
             if (!GameManager.IsAlive) return;
 
-            Parent.Rotate(1f + Input.GetAxis("Vertical") / 2f, Input.GetAxis("Horizontal") * 4f, 0f);
+            Parent.Rotate((1f + Input.GetAxis("Vertical") / 2f) * Speed, Input.GetAxis("Horizontal") * 4f, 0f);
         }
 
         void OnCollisionEnter(Collision other)
