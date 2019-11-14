@@ -4,7 +4,7 @@ namespace Planet
 {
     public class Meteor : MonoBehaviour
     {
-        static BiasedRandom<MeteorEffect> BiasedRandom;
+        static readonly BiasedRandom<MeteorEffect> BiasedRandom;
 
         public MeteorEffect Effect { get; protected set; }
 
