@@ -7,7 +7,9 @@ namespace Planet
 {
     public class MeteorEffect
     {
-        public static IReadOnlyList<MeteorEffect> Effects = new List<MeteorEffect>();
+        public static readonly IReadOnlyList<MeteorEffect> Effects = new List<MeteorEffect>();
+        static readonly Dictionary<Player, Dictionary<MeteorEffect, int>> ActiveEffects =
+            new Dictionary<Player, Dictionary<MeteorEffect, int>>();
 
         #region static effects
 
@@ -55,9 +57,26 @@ namespace Planet
 
         IEnumerator PlayerEffectCoroutine(Player player, float effectTime, Action<Player> onEffectStart, Action<Player> onEffectStop)
         {
+            if (!ActiveEffects.ContainsKey(player))
+                ActiveEffects.Add(player, new Dictionary<MeteorEffect, int>());
+
+            var activeEffects = ActiveEffects[player];
+
+            if (activeEffects.ContainsKey(this))
+            {
+                activeEffects[this]++;
+                yield break;
+            }
+
+            activeEffects.Add(this, 1);
+
             onEffectStart(player);
-            yield return new WaitForSeconds(effectTime);
+
+            while (activeEffects[this] != 0)
+                yield return new WaitForSeconds(effectTime);
+
             onEffectStop(player);
+            ActiveEffects[player].Remove(this);
         }
     }
 }
