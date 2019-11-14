@@ -67,7 +67,8 @@ namespace Planet
             StopCoroutine(SpawnMeteorCoroutineVar);
 
             foreach (var meteor in Meteors.Concat(PlacedMeteors))
-                Destroy(meteor.gameObject);
+                if (meteor != null)
+                    Destroy(meteor.gameObject);
 
             Meteors.Clear();
             PlacedMeteors.Clear();

@@ -31,6 +31,7 @@ namespace Planet
             var meteor = other.GetComponent<Meteor>();
             if (meteor == null) return;
 
+            Destroy(meteor.gameObject);
             meteor.Effect.OnCollideWithPlayer(this);
         }
 
