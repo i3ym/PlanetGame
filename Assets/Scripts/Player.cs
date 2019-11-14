@@ -23,7 +23,7 @@ namespace Planet
         {
             if (!GameManager.IsAlive) return;
 
-            Parent.Rotate((1f + Input.GetAxis("Vertical") / 2f) * Speed, Input.GetAxis("Horizontal") * 4f, 0f);
+            Parent.Rotate(Speed, Input.GetAxis("Horizontal") * 4f, 0f);
         }
 
         void OnTriggerEnter(Collider other)
