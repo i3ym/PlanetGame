@@ -24,6 +24,16 @@ namespace Planet
                 player.Speed += .5f;
             });
 
+        public static MeteorEffect Speedup = new MeteorEffect(Color.green, 5f,
+            (player) =>
+            {
+                player.Speed += .5f;
+            },
+            (player) =>
+            {
+                player.Speed -= .5f;
+            });
+
         #endregion
 
         public readonly Color Color;
